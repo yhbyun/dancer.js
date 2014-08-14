@@ -351,7 +351,7 @@
       };
       req.send();
 
-      this.proc = this.context.createJavaScriptNode( SAMPLE_SIZE / 2, 1, 1 );
+      this.proc = this.context.createScriptProcessor( SAMPLE_SIZE / 2, 1, 1 );
       this.proc.onaudioprocess = function ( e ) {
         _this.update.call( _this, e );
       };
@@ -370,7 +370,7 @@
         if ( _this.isDisconnected ) {
           connectContext.call( _this );
         }
-        _this.source.noteOn( 0.0 );
+        _this.source.start( 0.0 );
         _this.startTime = _this.context.currentTime;
         _this.isPlaying = true;
       }
@@ -378,7 +378,7 @@
 
     stop : function () {
       if ( this.isPlaying ) {
-        this.source.noteOff( 0.0 );
+        this.source.stop( 0.0 );
         this.isDisconnected = true;
         this.endTime = this.getTime();
       }
